@@ -1,6 +1,6 @@
 //bluetooth hc-06
 const int LED=11;
-int state = 0; // Variable lectrura serial
+int state = 0; // Variable lectura serial
  
 void setup() {
     pinMode(LED, OUTPUT);   //Declara pin de Salida
@@ -8,7 +8,7 @@ void setup() {
     Serial.begin(9600);
 }
 void loop() {
- //si el modulo a manda dato, guardarlo en estado.
+ //si el módulo a manda dato, guardarlo en estado.
   if(Serial.available() > 0){
        state = Serial.read();
   } // esta parte del código es para solo 1 Carácter o Unidad. 
