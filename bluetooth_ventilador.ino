@@ -1,39 +1,41 @@
 //bluetooth hc-06
-const int LED=11;
+const int FAN=11;
 int state = 0; // Variable lectura serial
  
 void setup() {
-    pinMode(LED, OUTPUT);   //Declara pin de Salida
-    analogWrite(LED,0);
+    pinMode(FAN, OUTPUT);   //Declara pin de salida
+    analogWrite(FAN,0);
     Serial.begin(9600);
 }
 void loop() {
- //si el módulo a manda dato, guardarlo en estado.
+ //si el módulo manda un dato, guardarlo en estado.
   if(Serial.available() > 0){
        state = Serial.read();
-  } // esta parte del código es para solo 1 Carácter o Unidad. 
+  }
  
- // si el estado es 0 ese sería Apagado “OFF”
+//si el estado es 0 sería Apagado “OFF” para el ventilador
  if (state == '0') {
-    analogWrite(LED,0);
-    Serial.println("LED: off");
+    analogWrite(FAN,0);
+    Serial.println("FAN: off");
  }
- // de lo contrario si el estado es 1 ese sería Encendido “ON”
+ //de lo contrario si el estado es 1 sería Encendido “ON” para el ventilador con una velocidad baja
  else
  if (state == '1') {
      for  (int i=1;i<100; i++){
-analogWrite(LED,i);
+analogWrite(FAN,i);
 delay(5);}
-     Serial.println("LED: on");
+     Serial.println("FAN: on");
  }
+ //de lo contrario si el estado es 2 sería aumentar la velocidad a media para el ventilador
  else
  if (state == '2') {
-     analogWrite(LED,155);
-     Serial.println("LED: medio");
+     analogWrite(FAN,155);
+     Serial.println("FAN: medio");
  }
+//de lo contrario si el estado es 3 sería aumentar la velocidad alta para el ventilador
  else
  if (state == '3') {
-     analogWrite(LED,155);
-     Serial.println("LED: medio");
+     analogWrite(FAN,255);
+     Serial.println("FAN: alta");
  }
 }
