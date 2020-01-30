@@ -1,4 +1,7 @@
 //bluetooth hc-06
+//Se utiliza el pin 11 ya que tiene capacidad PWM (como los pines 3,5,6,9,10,11) permite modificar
+//la cantidad de energía que se envía a una carga
+
 const int FAN=11;
 int state = 0; // Variable lectura serial
  
